@@ -1,0 +1,45 @@
+class Node:
+    #define node
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+
+#perform depth first traversal
+def depth_first_traversal(node):
+    #check if the node is present, if not return None
+    if node is None:
+        return
+    
+    #initialize an empty stack and append the node to it
+    stack = []
+    stack.append(node)
+
+#while the stack exists, pop the item and check if the data contains child nodes
+    while stack:
+        current = stack.pop()
+        #print the current node
+        print(current.data)
+        #if stack contains a right child node, then add it to the stack
+        if current.right:
+            stack.append(current.right)
+            #if stack contains a left child node, then add it to the stack
+        if current.left:
+            stack.append(current.left)
+
+# Creating the tree
+a = Node('a')
+b = Node('b')
+c = Node('c')
+d = Node('d')
+e = Node('e')
+f = Node('f')
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.right = f
+
+# Perform depth-first traversal iteratively
+depth_first_traversal(a)

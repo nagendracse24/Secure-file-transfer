@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      width: 300px;
+      padding: 20px;
+      margin: 0 auto;
+      margin-top: 100px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #alertMessage {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login Page</h2>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" />
+    </div>
+    <button class="btn" onclick="login()">Login</button>
+    <div id="alertMessage"></div>
+  </div>
+
+  <script>
+    function displayAlert(message) {
+      var alertMessage = document.getElementById("alertMessage");
+      alertMessage.innerHTML = message;
+    }
+
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var usernamePattern = /^[a-zA-Z0-9]+$/;
+      var passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+
+      if (!usernamePattern.test(username)) {
+        displayAlert("Invalid username! Only alphanumeric characters are allowed.");
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        displayAlert("Invalid password! Password must be at least 8 characters long and contain at least one number and one special character (!@#$%^&*).");
+        return;
+      }
+
+      var now = new Date();
+      var currentTime = now.toLocaleTimeString();
+
+      var successMessage = "Welcome, " + username + "! Current time is: " + currentTime;
+      displayAlert(successMessage);
+
+      document.body.style.backgroundColor = "#e6f7ff";
+    }
+  </script>
+</body>
+</html>

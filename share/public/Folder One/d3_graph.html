@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bar Graph</title>
+<style>
+h1{
+   text-align:center;
+}
+svg rect{
+    fill:black;
+}
+svg text{
+    fill:white;
+    font:12px;
+}
+</style>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <h1>Bar Graph</h1>
+
+  <script>
+	var data=[]
+	var size=8
+
+	for(var i=0; i<size; i++){
+		data[i]=prompt("enter value of element "+(i+1)+":");
+	}
+	console.log(data)
+	var width=1200,
+	    scaleFactor = 20,
+	    barheight = 20;
+
+	var graph = d3.select("body")
+		    .append("svg")
+		    .attr("width",width)
+		    .attr("height",barheight*data.length)
+
+	var bar = graph.selectAll("g")
+	 	  .data(data)
+		  .enter()
+		  .append("g")
+		  .attr("transform",function(d,i){
+			return "translate(0,"+barheight*i+")";
+		  });
+	
+	bar.append("rect")
+	   .attr("width",function(d){
+		return d*scaleFactor+20;
+	    })
+	    .attr("height",barheight-1);
+
+	bar.append("text")
+	   .attr("x",function(d){
+		return d*scaleFactor;
+	   })
+	   .attr("y",barheight/2)
+	   .attr("dy",".24em")
+	   .text(function(d){
+		return d;
+	   });   
+
+ 
+  </script>
+</body>
+</html>

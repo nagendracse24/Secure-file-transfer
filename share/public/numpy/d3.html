@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form id="personForm">
+  <label for="name">Name</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="sub">Subject</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="button" value="Add Person" onclick="addPerson()">
+  <input type="submit" value="Submit" onclick="submitForm()">
+</form> 
+
+<script>
+  let peopleData = [];
+
+  function addPerson() {
+    const firstName = document.getElementById("name").value;
+    const lastName = document.getElementById("sub").value;
+
+    const person = {
+      name: name,
+      sub: sub
+    };
+
+    peopleData.push(person);
+
+    document.getElementById("fname").value = "";
+    document.getElementById("lname").value = "";
+  }
+
+  function submitForm() {
+    // Prevent form submission
+    event.preventDefault();
+
+    console.log(peopleData);
+
+    // You can further process or send the data to a server as needed
+  }
+</script>
+
+</body>
+</html>
